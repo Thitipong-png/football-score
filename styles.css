@@ -37,8 +37,8 @@ button { cursor: pointer; }
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255,255,255,.09);
 }
-.brand { color: white; text-decoration: none; font: 700 25px "Chakra Petch"; letter-spacing: -1px; display: flex; align-items: center; gap: 8px; }
-.brand-ball { width: 24px; height: 24px; border: 4px dotted var(--green); border-radius: 50%; color: transparent; transform: rotate(15deg); }
+.brand { display: flex; align-items: center; width: fit-content; color: white; text-decoration: none; }
+.brand img { display: block; width: 116px; height: auto; }
 .main-nav { display: flex; align-items: stretch; align-self: stretch; gap: 34px; }
 .main-nav a { color: #95a49d; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; position: relative; letter-spacing: .2px; }
 .main-nav a:hover, .main-nav a.active { color: #fff; }
