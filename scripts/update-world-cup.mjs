@@ -90,17 +90,23 @@ function normalize(item) {
 }
 
 function prioritize(items) {
-  const now = Date.now();
   const live = items.filter(item => item.status === "live").sort((a, b) => Date.parse(a.kickoff) - Date.parse(b.kickoff));
   const upcoming = items.filter(item => item.status === "upcoming").sort((a, b) => Date.parse(a.kickoff) - Date.parse(b.kickoff));
   const finished = items.filter(item => item.status === "finished").sort((a, b) => Date.parse(b.kickoff) - Date.parse(a.kickoff));
-  const next = upcoming.find(item => Date.parse(item.kickoff) >= now) || upcoming[0];
+  const other = items.filter(item => !["live", "upcoming", "finished"].includes(item.status));
+  const next = upcoming[0];
   const latest = finished[0];
-  if (live[0]) live[0].featured = "กำลังแข่งขัน";
-  else if (next) next.featured = "แมตช์ถัดไป";
+  live.forEach(item => { item.featured = "กำลังแข่งขัน"; });
+  if (next) next.featured = "แมตช์ถัดไป";
   if (latest) latest.featured = "ผลล่าสุด";
-  const pinned = [live[0] || next, latest].filter(Boolean);
-  return [...pinned, ...items.filter(item => !pinned.includes(item)).sort((a, b) => Date.parse(b.kickoff) - Date.parse(a.kickoff))];
+  return [
+    ...live,
+    ...(latest ? [latest] : []),
+    ...(next ? [next] : []),
+    ...finished.slice(1),
+    ...upcoming.slice(1),
+    ...other
+  ];
 }
 
 async function main() {

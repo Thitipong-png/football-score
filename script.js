@@ -39,6 +39,26 @@ let matches = [];
 
 const teamAsset = team => team.logo || `assets/${team.code || "world-cup"}.svg`;
 
+function googleMatchUrl(match) {
+  const query = `${match.home.name} vs ${match.away.name} FIFA World Cup 2026`;
+  return `https://www.google.com/search?hl=th&q=${encodeURIComponent(query)}`;
+}
+
+function prioritizeMatches(items) {
+  const kickoff = match => Date.parse(match.kickoff) || 0;
+  const live = items.filter(match => match.status === "live").sort((a, b) => kickoff(a) - kickoff(b));
+  const finished = items.filter(match => match.status === "finished").sort((a, b) => kickoff(b) - kickoff(a));
+  const upcoming = items.filter(match => match.status === "upcoming").sort((a, b) => kickoff(a) - kickoff(b));
+  const other = items.filter(match => !["live", "finished", "upcoming"].includes(match.status));
+  const highlighted = [...live, finished[0], upcoming[0]].filter(Boolean);
+  return [
+    ...highlighted,
+    ...finished.slice(1),
+    ...upcoming.slice(1),
+    ...other
+  ];
+}
+
 function scorerMarkup(names) {
   return names.length ? names.map(name => `<p>${name} <span class="ball">⚽</span></p>`).join("") : "<p>—</p>";
 }
@@ -58,7 +78,7 @@ function renderMatches() {
     return;
   }
 
-  matches.forEach(match => {
+  prioritizeMatches(matches).forEach(match => {
     const card = template.content.firstElementChild.cloneNode(true);
     card.dataset.status = match.status;
     if (match.featured) {
@@ -86,7 +106,12 @@ function renderMatches() {
     scores[1].textContent = match.away.score;
     card.querySelector(".score-note").textContent = match.note;
     card.querySelector(".scorers").innerHTML = `<div>${scorerMarkup(match.homeScorers)}</div><div>${scorerMarkup(match.awayScorers)}</div>`;
-    card.querySelector(".details-btn").addEventListener("click", () => openModal(match));
+    const detailsLink = card.querySelector(".details-btn");
+    detailsLink.href = googleMatchUrl(match);
+    detailsLink.setAttribute(
+      "aria-label",
+      `ค้นหารายละเอียดการแข่งขัน ${match.home.th} พบ ${match.away.th} บน Google (เปิดแท็บใหม่)`
+    );
     grid.appendChild(card);
   });
   updateCounts();
