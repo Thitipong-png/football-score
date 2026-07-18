@@ -99,14 +99,7 @@ function prioritize(items) {
   live.forEach(item => { item.featured = "กำลังแข่งขัน"; });
   if (next) next.featured = "แมตช์ถัดไป";
   if (latest) latest.featured = "ผลล่าสุด";
-  return [
-    ...live,
-    ...(latest ? [latest] : []),
-    ...(next ? [next] : []),
-    ...finished.slice(1),
-    ...upcoming.slice(1),
-    ...other
-  ];
+  return [...live, ...finished, ...upcoming, ...other];
 }
 
 async function main() {

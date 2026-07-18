@@ -14,6 +14,7 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
+  overflow-x: hidden;
   color: var(--ink);
   background: var(--cream);
   font-family: "IBM Plex Sans Thai", sans-serif;
@@ -91,11 +92,19 @@ button { cursor: pointer; }
 .date-divider span { font-weight: 700; }
 .date-divider time { color: #8a9690; }
 .date-divider i { height: 1px; background: var(--line); flex: 1; }
-.match-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
-.match-card { background: var(--paper); border: 1px solid #e2e8e4; border-radius: 7px; padding: 17px 20px 0; overflow: hidden; box-shadow: 0 6px 24px rgba(19,45,32,.035); transition: transform .2s, box-shadow .2s; }
+.match-grid { display: block; }
+.match-group { min-width: 0; }
+.match-group + .match-group { margin-top: 30px; }
+.group-heading { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; }
+.group-heading span { width: 8px; height: 8px; border-radius: 50%; background: var(--green-dark); }
+.match-group-live .group-heading span { background: #e74747; box-shadow: 0 0 0 5px rgba(231,71,71,.12); animation: pulse 1.5s infinite; }
+.group-heading h3 { margin: 0; color: var(--night); font: 700 14px "Chakra Petch", "IBM Plex Sans Thai", sans-serif; }
+.group-heading i { height: 1px; background: var(--line); flex: 1; }
+.group-grid { display: grid; min-width: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+.match-card { position: relative; min-width: 0; max-width: 100%; background: var(--paper); border: 1px solid #e2e8e4; border-radius: 7px; padding: 31px 20px 0; overflow: hidden; box-shadow: 0 6px 24px rgba(19,45,32,.035); transition: transform .2s, box-shadow .2s; }
 .match-card:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(19,45,32,.09); }
 .match-card.featured { border-color: rgba(0,92,61,.35); box-shadow: 0 8px 26px rgba(0,92,61,.08); }
-.match-card.featured::before { content: attr(data-featured-label); display: block; width: fit-content; margin: -17px auto 10px; padding: 4px 12px; border-radius: 0 0 7px 7px; color: white; background: var(--green-dark); font: 700 9px "Chakra Petch"; letter-spacing: .7px; }
+.match-card.featured::before { content: attr(data-featured-label); position: absolute; top: 0; left: 50%; z-index: 1; width: max-content; transform: translateX(-50%); padding: 4px 12px; border-radius: 0 0 7px 7px; color: white; background: var(--green-dark); font: 700 9px "Chakra Petch"; letter-spacing: .7px; }
 .card-top { display: flex; justify-content: space-between; align-items: center; }
 .stage { color: #839088; font: 600 9px "Chakra Petch"; letter-spacing: 1px; text-transform: uppercase; }
 .match-status { font: 700 9px "Chakra Petch"; letter-spacing: .4px; color: #75837b; }
@@ -159,7 +168,7 @@ body.modal-open { overflow: hidden; }
   .scores-section { padding: 38px 15px 95px; }
   .section-heading { align-items: center; }
   .updated { width: 90px; text-align: right; }
-  .match-grid { grid-template-columns: 1fr; }
+  .group-grid { grid-template-columns: minmax(0, 1fr); }
   .filter-bar { margin-right: -15px; }
   .teams-row { grid-template-columns: 1fr 105px 1fr; }
 }
