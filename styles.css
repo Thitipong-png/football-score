@@ -116,7 +116,7 @@ button { cursor: pointer; }
 .scorers div:last-child { text-align: right; }
 .scorers p { margin: 2px 0; }
 .scorers .ball { font-size: 8px; margin: 0 3px; filter: grayscale(1); }
-.details-btn { width: calc(100% + 40px); margin-left: -20px; border: 0; border-top: 1px solid #edf0ee; background: #fbfcfb; color: #43534a; padding: 11px; font-size: 11px; font-weight: 600; transition: .2s; }
+.details-btn { display: block; box-sizing: border-box; width: calc(100% + 40px); margin-left: -20px; border: 0; border-top: 1px solid #edf0ee; background: #fbfcfb; color: #43534a; padding: 11px; font-size: 11px; font-weight: 600; text-align: center; text-decoration: none; transition: .2s; }
 .details-btn span { color: var(--green-dark); margin-left: 5px; }
 .details-btn:hover { background: var(--green-dark); color: white; }
 .details-btn:hover span { color: var(--green); }
