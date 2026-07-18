@@ -1,21 +1,27 @@
 import { mkdir, writeFile } from "node:fs/promises";
 
-const API_ROOT = "https://v3.football.api-sports.io";
-const LEAGUE_ID = 1;
+const API_ROOT = "https://api.football-data.org/v4";
+const COMPETITION = "WC";
 const SEASON = 2026;
 const STOP_DATE_BANGKOK = "2026-07-22";
-const FIFA_SOURCE = "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026";
+const DATA_SOURCE = "https://www.football-data.org/coverage";
 
 const thaiNames = new Map([
   ["Argentina", "อาร์เจนตินา"], ["England", "อังกฤษ"], ["France", "ฝรั่งเศส"], ["Spain", "สเปน"],
-  ["Brazil", "บราซิล"], ["Portugal", "โปรตุเกส"], ["Germany", "เยอรมนี"], ["USA", "สหรัฐอเมริกา"]
+  ["Brazil", "บราซิล"], ["Portugal", "โปรตุเกส"], ["Germany", "เยอรมนี"], ["United States", "สหรัฐอเมริกา"],
+  ["USA", "สหรัฐอเมริกา"]
 ]);
 const localCodes = new Map([
   ["Argentina", "argentina"], ["England", "england"], ["France", "france"], ["Spain", "spain"],
-  ["Brazil", "brazil"], ["Portugal", "portugal"], ["Germany", "germany"], ["USA", "usa"]
+  ["Brazil", "brazil"], ["Portugal", "portugal"], ["Germany", "germany"], ["United States", "usa"], ["USA", "usa"]
 ]);
-const liveCodes = new Set(["1H", "HT", "2H", "ET", "BT", "P", "INT", "LIVE"]);
-const finishedCodes = new Set(["FT", "AET", "PEN"]);
+const liveStatuses = new Set(["IN_PLAY", "PAUSED"]);
+const finishedStatuses = new Set(["FINISHED", "AWARDED"]);
+const stageNames = new Map([
+  ["FINAL", "รอบชิงชนะเลิศ"], ["THIRD_PLACE", "ชิงอันดับ 3"], ["SEMI_FINALS", "รอบรองชนะเลิศ"],
+  ["QUARTER_FINALS", "รอบ 8 ทีมสุดท้าย"], ["LAST_16", "รอบ 16 ทีมสุดท้าย"], ["LAST_32", "รอบ 32 ทีมสุดท้าย"],
+  ["GROUP_STAGE", "รอบแบ่งกลุ่ม"]
+]);
 
 function bangkokDate(date = new Date()) {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Bangkok", year: "numeric", month: "2-digit", day: "2-digit" }).format(date);
@@ -27,60 +33,59 @@ function thaiDateTime(value) {
   }).format(new Date(value)).replace(",", " ·");
 }
 
-async function api(path) {
-  const response = await fetch(`${API_ROOT}${path}`, { headers: { "x-apisports-key": process.env.API_FOOTBALL_KEY } });
-  if (!response.ok) throw new Error(`API-Football ตอบกลับ HTTP ${response.status}`);
+async function fetchMatches() {
+  const url = `${API_ROOT}/competitions/${COMPETITION}/matches?season=${SEASON}&dateFrom=2026-07-14&dateTo=2026-07-22`;
+  const response = await fetch(url, { headers: { "X-Auth-Token": process.env.FOOTBALL_DATA_TOKEN } });
+  if (!response.ok) {
+    const detail = await response.text();
+    throw new Error(`football-data.org ตอบกลับ HTTP ${response.status}: ${detail.slice(0, 300)}`);
+  }
   const payload = await response.json();
-  if (payload.errors && Object.keys(payload.errors).length) throw new Error(`API-Football error: ${JSON.stringify(payload.errors)}`);
-  return payload.response || [];
+  return payload.matches || [];
 }
 
 function matchStatus(item) {
-  const code = item.fixture.status.short;
-  if (liveCodes.has(code)) return "live";
-  if (finishedCodes.has(code)) return "finished";
+  if (liveStatuses.has(item.status)) return "live";
+  if (finishedStatuses.has(item.status)) return "finished";
   return "upcoming";
 }
 
 function statusText(item, status) {
-  if (status === "live") return `LIVE · ${item.fixture.status.elapsed || 0}'`;
+  if (status === "live") return `LIVE · ${item.minute || 0}'`;
   if (status === "finished") return "จบการแข่งขัน";
-  if (["PST", "CANC", "SUSP"].includes(item.fixture.status.short)) return item.fixture.status.long;
-  return `${thaiDateTime(item.fixture.date)} น.`;
+  if (["POSTPONED", "CANCELLED", "SUSPENDED"].includes(item.status)) return item.status;
+  return `${thaiDateTime(item.utcDate)} น.`;
 }
 
 function team(teamData, score) {
+  const originalName = teamData.shortName || teamData.name;
   return {
-    name: teamData.name.toUpperCase(), th: thaiNames.get(teamData.name) || teamData.name,
-    code: localCodes.get(teamData.name) || "world-cup", logo: teamData.logo || "", score: score ?? "–"
+    name: (teamData.tla || originalName).toUpperCase(),
+    th: thaiNames.get(originalName) || thaiNames.get(teamData.name) || originalName,
+    code: localCodes.get(originalName) || localCodes.get(teamData.name) || "world-cup",
+    logo: teamData.crest || "",
+    score: score ?? "–"
   };
-}
-
-function goalText(event) {
-  const minute = `${event.time.elapsed}${event.time.extra ? `+${event.time.extra}` : ""}'`;
-  return `${event.player?.name || "ไม่ระบุชื่อ"} ${minute}`;
 }
 
 function normalize(item) {
   const status = matchStatus(item);
-  const goals = (item.events || []).filter(event => event.type === "Goal" && event.detail !== "Missed Penalty");
-  const homeGoals = goals.filter(event => event.team?.id === item.teams.home.id).map(goalText);
-  const awayGoals = goals.filter(event => event.team?.id === item.teams.away.id).map(goalText);
-  const venue = [item.fixture.venue?.name, item.fixture.venue?.city].filter(Boolean).join(", ") || "รอยืนยันสนาม";
+  const venue = item.venue || "รอยืนยันสนาม";
+  const stage = stageNames.get(item.stage) || item.stage?.replaceAll("_", " ") || "FIFA World Cup 2026";
   return {
-    id: item.fixture.id,
-    kickoff: item.fixture.date,
-    stage: `${item.league.round || "FIFA World Cup 2026"} · ${item.fixture.venue?.name || "Venue TBC"}`,
+    id: item.id,
+    kickoff: item.utcDate,
+    stage: `${stage} · ${venue}`,
     status,
     statusText: statusText(item, status),
-    home: team(item.teams.home, item.goals.home),
-    away: team(item.teams.away, item.goals.away),
-    note: status === "finished" ? `${thaiDateTime(item.fixture.date)} น. · เต็มเวลา` : status === "live" ? item.fixture.status.long : "เวลาไทย",
-    homeScorers: homeGoals,
-    awayScorers: awayGoals,
+    home: team(item.homeTeam, item.score?.fullTime?.home),
+    away: team(item.awayTeam, item.score?.fullTime?.away),
+    note: status === "finished" ? `${thaiDateTime(item.utcDate)} น. · เต็มเวลา` : status === "live" ? "กำลังแข่งขัน" : "เวลาไทย",
+    homeScorers: [],
+    awayScorers: [],
     venue,
-    attendance: item.league.round || "FIFA World Cup 2026",
-    source: FIFA_SOURCE
+    attendance: stage,
+    source: DATA_SOURCE
   };
 }
 
@@ -104,19 +109,17 @@ async function main() {
     console.log(`หยุดเรียก API แล้ว: วันที่ไทย ${today} ถึงกำหนด ${STOP_DATE_BANGKOK}`);
     return;
   }
-  if (!process.env.API_FOOTBALL_KEY) throw new Error("ไม่พบ GitHub Secret: API_FOOTBALL_KEY");
+  if (!process.env.FOOTBALL_DATA_TOKEN) throw new Error("ไม่พบ GitHub Secret: FOOTBALL_DATA_TOKEN");
 
-  const list = await api(`/fixtures?league=${LEAGUE_ID}&season=${SEASON}&from=2026-07-14&to=2026-07-21&timezone=Asia%2FBangkok`);
-  if (!list.length) throw new Error("API ไม่ส่งข้อมูลการแข่งขันช่วงท้ายฟุตบอลโลกกลับมา");
-  const ids = list.map(item => item.fixture.id).slice(0, 20).join("-");
-  const details = await api(`/fixtures?ids=${ids}&timezone=Asia%2FBangkok`);
-  const matches = prioritize(details.map(normalize));
+  const rawMatches = await fetchMatches();
+  if (!rawMatches.length) throw new Error("API ไม่ส่งข้อมูลการแข่งขันช่วงท้ายฟุตบอลโลกกลับมา");
+  const matches = prioritize(rawMatches.map(normalize));
 
   await mkdir("data", { recursive: true });
   await writeFile("data/world-cup.json", JSON.stringify({
-    updatedAt: new Date().toISOString(), source: "API-Football league 1 season 2026", stopDateBangkok: STOP_DATE_BANGKOK, matches
+    updatedAt: new Date().toISOString(), source: "football-data.org free tier", stopDateBangkok: STOP_DATE_BANGKOK, matches
   }, null, 2) + "\n", "utf8");
-  console.log(`อัปเดต ${matches.length} แมตช์สำเร็จ โดยใช้ API 2 requests`);
+  console.log(`อัปเดต ${matches.length} แมตช์สำเร็จ โดยใช้ API ฟรี 1 request`);
 }
 
 main().catch(error => { console.error(error); process.exitCode = 1; });
