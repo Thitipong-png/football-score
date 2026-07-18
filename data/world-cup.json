@@ -1,64 +1,117 @@
 {
-  "updatedAt": "2026-07-18T12:00:00.000Z",
-  "source": "API-Football league 1 season 2026",
+  "updatedAt": "2026-07-18T18:11:20.199Z",
+  "source": "football-data.org free tier",
+  "stopDateBangkok": "2026-07-22",
   "matches": [
     {
-      "id": 103,
-      "stage": "ชิงอันดับ 3 · Miami Stadium",
+      "id": 537389,
+      "kickoff": "2026-07-18T21:00:00Z",
+      "stage": "ชิงอันดับ 3 · รอยืนยันสนาม",
       "status": "upcoming",
-      "statusText": "04:00 น. · 19 ก.ค.",
-      "featured": "แมตช์ถัดไป",
-      "home": { "name": "FRANCE", "th": "ฝรั่งเศส", "code": "france", "score": "–" },
-      "away": { "name": "ENGLAND", "th": "อังกฤษ", "code": "england", "score": "–" },
+      "statusText": "19 ก.ค. 04:00 น.",
+      "home": {
+        "name": "FRA",
+        "th": "ฝรั่งเศส",
+        "code": "france",
+        "logo": "https://crests.football-data.org/773.svg",
+        "score": "–"
+      },
+      "away": {
+        "name": "ENG",
+        "th": "อังกฤษ",
+        "code": "england",
+        "logo": "https://crests.football-data.org/770.svg",
+        "score": "–"
+      },
       "note": "เวลาไทย",
       "homeScorers": [],
       "awayScorers": [],
-      "venue": "Miami Stadium, Miami",
-      "attendance": "แมตช์ที่ 103",
-      "source": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026"
+      "venue": "รอยืนยันสนาม",
+      "attendance": "ชิงอันดับ 3",
+      "source": "https://www.football-data.org/coverage",
+      "featured": "แมตช์ถัดไป"
     },
     {
-      "id": 102,
-      "stage": "รอบรองชนะเลิศ · Atlanta Stadium",
+      "id": 537388,
+      "kickoff": "2026-07-15T19:00:00Z",
+      "stage": "รอบรองชนะเลิศ · รอยืนยันสนาม",
       "status": "finished",
       "statusText": "จบการแข่งขัน",
-      "featured": "ผลล่าสุด",
-      "home": { "name": "ENGLAND", "th": "อังกฤษ", "code": "england", "score": 1 },
-      "away": { "name": "ARGENTINA", "th": "อาร์เจนตินา", "code": "argentina", "score": 2 },
-      "note": "15 ก.ค. 2026 · เต็มเวลา",
-      "homeScorers": ["A. Gordon 55'"],
-      "awayScorers": ["E. Fernández 85'", "L. Martínez 90+2'"],
-      "venue": "Atlanta Stadium, Atlanta",
+      "home": {
+        "name": "ENG",
+        "th": "อังกฤษ",
+        "code": "england",
+        "logo": "https://crests.football-data.org/770.svg",
+        "score": 1
+      },
+      "away": {
+        "name": "ARG",
+        "th": "อาร์เจนตินา",
+        "code": "argentina",
+        "logo": "https://crests.football-data.org/762.png",
+        "score": 2
+      },
+      "note": "16 ก.ค. 02:00 น. · เต็มเวลา",
+      "homeScorers": [],
+      "awayScorers": [],
+      "venue": "รอยืนยันสนาม",
       "attendance": "รอบรองชนะเลิศ",
-      "source": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026"
+      "source": "https://www.football-data.org/coverage",
+      "featured": "ผลล่าสุด"
     },
     {
-      "id": 104,
-      "stage": "รอบชิงชนะเลิศ · New York New Jersey Stadium",
+      "id": 537390,
+      "kickoff": "2026-07-19T19:00:00Z",
+      "stage": "รอบชิงชนะเลิศ · รอยืนยันสนาม",
       "status": "upcoming",
-      "statusText": "02:00 น. · 20 ก.ค.",
-      "home": { "name": "SPAIN", "th": "สเปน", "code": "spain", "score": "–" },
-      "away": { "name": "ARGENTINA", "th": "อาร์เจนตินา", "code": "argentina", "score": "–" },
+      "statusText": "20 ก.ค. 02:00 น.",
+      "home": {
+        "name": "ESP",
+        "th": "สเปน",
+        "code": "spain",
+        "logo": "https://crests.football-data.org/760.svg",
+        "score": "–"
+      },
+      "away": {
+        "name": "ARG",
+        "th": "อาร์เจนตินา",
+        "code": "argentina",
+        "logo": "https://crests.football-data.org/762.png",
+        "score": "–"
+      },
       "note": "เวลาไทย",
       "homeScorers": [],
       "awayScorers": [],
-      "venue": "New York New Jersey Stadium",
-      "attendance": "รอบชิงชนะเลิศ · แมตช์ที่ 104",
-      "source": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026"
+      "venue": "รอยืนยันสนาม",
+      "attendance": "รอบชิงชนะเลิศ",
+      "source": "https://www.football-data.org/coverage"
     },
     {
-      "id": 101,
-      "stage": "รอบรองชนะเลิศ · Dallas Stadium",
+      "id": 537387,
+      "kickoff": "2026-07-14T19:00:00Z",
+      "stage": "รอบรองชนะเลิศ · รอยืนยันสนาม",
       "status": "finished",
       "statusText": "จบการแข่งขัน",
-      "home": { "name": "FRANCE", "th": "ฝรั่งเศส", "code": "france", "score": 0 },
-      "away": { "name": "SPAIN", "th": "สเปน", "code": "spain", "score": 2 },
-      "note": "14 ก.ค. 2026 · เต็มเวลา",
+      "home": {
+        "name": "FRA",
+        "th": "ฝรั่งเศส",
+        "code": "france",
+        "logo": "https://crests.football-data.org/773.svg",
+        "score": 0
+      },
+      "away": {
+        "name": "ESP",
+        "th": "สเปน",
+        "code": "spain",
+        "logo": "https://crests.football-data.org/760.svg",
+        "score": 2
+      },
+      "note": "15 ก.ค. 02:00 น. · เต็มเวลา",
       "homeScorers": [],
-      "awayScorers": ["M. Oyarzabal 22'", "P. Porro 58'"],
-      "venue": "Dallas Stadium, Arlington",
+      "awayScorers": [],
+      "venue": "รอยืนยันสนาม",
       "attendance": "รอบรองชนะเลิศ",
-      "source": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026"
+      "source": "https://www.football-data.org/coverage"
     }
   ]
 }
