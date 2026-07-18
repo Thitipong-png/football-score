@@ -23,7 +23,7 @@ jobs:
           node-version: 22
       - name: Fetch World Cup scores
         env:
-          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
         run: node scripts/update-world-cup.mjs
       - name: Commit fresh data
         run: |

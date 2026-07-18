@@ -114,7 +114,7 @@ function openModal(match) {
         return `<div class="event"><time>${minute}</time><div>⚽ <b>${player}</b><br><small>${event.team}</small></div></div>`;
       }).join("") : '<div class="event"><time>—</time><div>ยังไม่มีเหตุการณ์สำคัญ</div></div>'}
       <div class="venue"><span>📍 ${match.venue}</span><span>${match.attendance}</span></div>
-      <a class="source-link" href="${match.source}" target="_blank" rel="noopener">ตรวจสอบข้อมูลจาก FIFA ↗</a>
+      <a class="source-link" href="${match.source}" target="_blank" rel="noopener">แหล่งข้อมูลการแข่งขัน ↗</a>
     </div>`;
   modal.hidden = false;
   document.body.classList.add("modal-open");
