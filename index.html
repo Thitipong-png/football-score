@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#071810" />
+  <title>GOAL! — World Cup 2026 Scores</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="GOAL! หน้าหลัก">
+      <span class="brand-ball">●</span>
+      <span>GOAL!</span>
+    </a>
+    <nav class="main-nav" aria-label="เมนูหลัก">
+      <a href="#">หน้าหลัก</a>
+      <a href="#scores">ผลบอล</a>
+      <a class="active" href="#world-cup">WORLD CUP <span>26</span></a>
+      <a href="#">ข่าวฟุตบอล</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="ค้นหา">⌕</button>
+      <button class="notify-btn" aria-label="การแจ้งเตือน">♢<i></i></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="world-cup">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> FIFA WORLD CUP 2026</p>
+        <h1>ทุกประตู<br><em>ทุกความมันส์</em></h1>
+        <p class="hero-subtitle">ติดตามผลการแข่งขันแบบเรียลไทม์ พร้อมสถิติและรายละเอียดทุกแมตช์</p>
+        <div class="host-row">
+          <span>HOSTED BY</span>
+          <b>🇨🇦</b><b>🇲🇽</b><b>🇺🇸</b>
+          <strong>CANADA · MEXICO · USA</strong>
+        </div>
+      </div>
+      <div class="hero-mark" aria-hidden="true">
+        <div class="trophy-lines">26</div>
+        <div class="mark-caption">WORLD<br>CUP</div>
+      </div>
+      <div class="hero-glow"></div>
+    </section>
+
+    <section class="scores-section" id="scores">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">MATCH CENTER</p>
+          <h2>ผลการแข่งขัน</h2>
+        </div>
+        <div class="updated"><span></span> อัปเดตข้อมูลล่าสุด <b id="updatedTime">18 ก.ค. 2026</b></div>
+      </div>
+
+      <div class="filter-bar" role="tablist" aria-label="กรองการแข่งขัน">
+        <button class="filter active" data-filter="all" role="tab">ทั้งหมด <span>0</span></button>
+        <button class="filter" data-filter="live" role="tab"><i></i> กำลังแข่ง <span>0</span></button>
+        <button class="filter" data-filter="finished" role="tab">จบการแข่งขัน <span>0</span></button>
+        <button class="filter" data-filter="upcoming" role="tab">โปรแกรมถัดไป <span>0</span></button>
+      </div>
+
+      <div class="date-divider"><span>แมตช์ล่าสุดและโปรแกรมถัดไป</span><time>เวลาไทย</time><i></i></div>
+      <div class="match-grid" id="matchGrid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <div class="modal" id="matchModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <article class="modal-panel">
+      <button class="modal-close" data-close-modal aria-label="ปิดรายละเอียด">×</button>
+      <div id="modalContent"></div>
+    </article>
+  </div>
+
+  <template id="matchTemplate">
+    <article class="match-card">
+      <div class="card-top">
+        <span class="stage"></span>
+        <span class="match-status"></span>
+      </div>
+      <div class="teams-row">
+        <div class="team home-team">
+          <div class="crest"><img src="" alt="" /></div>
+          <h3></h3>
+          <small></small>
+        </div>
+        <div class="score-box">
+          <div class="score"><b></b><span>–</span><b></b></div>
+          <p class="score-note"></p>
+        </div>
+        <div class="team away-team">
+          <div class="crest"><img src="" alt="" /></div>
+          <h3></h3>
+          <small></small>
+        </div>
+      </div>
+      <div class="scorers"></div>
+      <button class="details-btn">ดูรายละเอียด <span>↗</span></button>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>

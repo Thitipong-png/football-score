@@ -1,0 +1,64 @@
+{
+  "updatedAt": "2026-07-18T12:00:00.000Z",
+  "source": "API-Football league 1 season 2026",
+  "matches": [
+    {
+      "id": 103,
+      "stage": "ชิงอันดับ 3 · Miami Stadium",
+      "status": "upcoming",
+      "statusText": "04:00 น. · 19 ก.ค.",
+      "featured": "แมตช์ถัดไป",
+      "home": { "name": "FRANCE", "th": "ฝรั่งเศส", "code": "france", "score": "–" },
+      "away": { "name": "ENGLAND", "th": "อังกฤษ", "code": "england", "score": "–" },
+      "note": "เวลาไทย",
+      "homeScorers": [],
+      "awayScorers": [],
+      "venue": "Miami Stadium, Miami",
+      "attendance": "แมตช์ที่ 103",
+      "source": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026"
+    },
+    {
+      "id": 102,
+      "stage": "รอบรองชนะเลิศ · Atlanta Stadium",
+      "status": "finished",
+      "statusText": "จบการแข่งขัน",
+      "featured": "ผลล่าสุด",
+      "home": { "name": "ENGLAND", "th": "อังกฤษ", "code": "england", "score": 1 },
+      "away": { "name": "ARGENTINA", "th": "อาร์เจนตินา", "code": "argentina", "score": 2 },
+      "note": "15 ก.ค. 2026 · เต็มเวลา",
+      "homeScorers": ["A. Gordon 55'"],
+      "awayScorers": ["E. Fernández 85'", "L. Martínez 90+2'"],
+      "venue": "Atlanta Stadium, Atlanta",
+      "attendance": "รอบรองชนะเลิศ",
+      "source": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026"
+    },
+    {
+      "id": 104,
+      "stage": "รอบชิงชนะเลิศ · New York New Jersey Stadium",
+      "status": "upcoming",
+      "statusText": "02:00 น. · 20 ก.ค.",
+      "home": { "name": "SPAIN", "th": "สเปน", "code": "spain", "score": "–" },
+      "away": { "name": "ARGENTINA", "th": "อาร์เจนตินา", "code": "argentina", "score": "–" },
+      "note": "เวลาไทย",
+      "homeScorers": [],
+      "awayScorers": [],
+      "venue": "New York New Jersey Stadium",
+      "attendance": "รอบชิงชนะเลิศ · แมตช์ที่ 104",
+      "source": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026"
+    },
+    {
+      "id": 101,
+      "stage": "รอบรองชนะเลิศ · Dallas Stadium",
+      "status": "finished",
+      "statusText": "จบการแข่งขัน",
+      "home": { "name": "FRANCE", "th": "ฝรั่งเศส", "code": "france", "score": 0 },
+      "away": { "name": "SPAIN", "th": "สเปน", "code": "spain", "score": 2 },
+      "note": "14 ก.ค. 2026 · เต็มเวลา",
+      "homeScorers": [],
+      "awayScorers": ["M. Oyarzabal 22'", "P. Porro 58'"],
+      "venue": "Dallas Stadium, Arlington",
+      "attendance": "รอบรองชนะเลิศ",
+      "source": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026"
+    }
+  ]
+}

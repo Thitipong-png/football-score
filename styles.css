@@ -1,0 +1,169 @@
+:root {
+  --ink: #102119;
+  --muted: #708078;
+  --line: #dce4df;
+  --cream: #f4f5ed;
+  --paper: #ffffff;
+  --green: #13e586;
+  --green-dark: #005c3d;
+  --night: #071810;
+  --orange: #ff6534;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--cream);
+  font-family: "IBM Plex Sans Thai", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+button, a { font: inherit; }
+button { cursor: pointer; }
+
+.site-header {
+  height: 78px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 clamp(22px, 5vw, 80px);
+  background: rgba(7, 24, 16, .96);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,.09);
+}
+.brand { color: white; text-decoration: none; font: 700 25px "Chakra Petch"; letter-spacing: -1px; display: flex; align-items: center; gap: 8px; }
+.brand-ball { width: 24px; height: 24px; border: 4px dotted var(--green); border-radius: 50%; color: transparent; transform: rotate(15deg); }
+.main-nav { display: flex; align-items: stretch; align-self: stretch; gap: 34px; }
+.main-nav a { color: #95a49d; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; position: relative; letter-spacing: .2px; }
+.main-nav a:hover, .main-nav a.active { color: #fff; }
+.main-nav a.active::after { content: ""; position: absolute; height: 3px; left: 0; right: 0; bottom: 0; background: var(--green); border-radius: 4px 4px 0 0; }
+.main-nav a span { background: var(--green); color: var(--night); border-radius: 3px; margin-left: 5px; padding: 0 3px; font: 700 9px "Chakra Petch"; }
+.header-actions { justify-self: end; display: flex; gap: 8px; }
+.icon-btn, .notify-btn { width: 38px; height: 38px; color: #dce6e1; background: #10281d; border: 1px solid #244032; border-radius: 50%; font-size: 24px; position: relative; }
+.notify-btn { font-size: 20px; }
+.notify-btn i { width: 6px; height: 6px; border-radius: 50%; background: var(--green); position: absolute; top: 7px; right: 6px; box-shadow: 0 0 0 2px var(--night); }
+
+.hero {
+  min-height: 390px;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  background: radial-gradient(circle at 70% 30%, #0b6b45 0, #073c29 23%, transparent 49%), linear-gradient(112deg, #06170f 22%, #092a1c 100%);
+  padding: 64px max(24px, calc((100vw - 1180px)/2));
+  display: flex;
+  align-items: center;
+}
+.hero::before { content: ""; position: absolute; inset: 0; opacity: .16; background-image: linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px); background-size: 64px 64px; transform: perspective(500px) rotateX(54deg) scale(1.7); transform-origin: center bottom; }
+.hero::after { content: ""; position: absolute; width: 530px; height: 530px; border: 1px solid rgba(26,255,149,.17); border-radius: 50%; right: 12%; top: -260px; box-shadow: 0 0 0 70px rgba(26,255,149,.035), 0 0 0 140px rgba(26,255,149,.025); }
+.hero-copy { width: 60%; position: relative; z-index: 2; }
+.eyebrow, .section-kicker { margin: 0 0 12px; color: var(--green); font: 600 12px "Chakra Petch"; letter-spacing: 2.4px; }
+.eyebrow span { display: inline-block; width: 27px; height: 2px; background: var(--green); vertical-align: middle; margin-right: 8px; }
+.hero h1 { font: 700 clamp(48px, 6.3vw, 82px)/.92 "Chakra Petch"; letter-spacing: -4px; margin: 0; text-transform: uppercase; }
+.hero h1 em { font-style: normal; color: transparent; -webkit-text-stroke: 1.5px var(--green); }
+.hero-subtitle { max-width: 490px; color: #b7c5be; font-size: 15px; margin: 23px 0 25px; }
+.host-row { display: flex; align-items: center; gap: 8px; color: #809189; font: 500 9px "Chakra Petch"; letter-spacing: 1.2px; }
+.host-row b { font-size: 21px; filter: saturate(.85); }
+.host-row strong { color: #cbd7d1; font-size: 9px; }
+.hero-mark { width: 250px; height: 250px; z-index: 2; position: absolute; right: max(60px, calc((100vw - 1030px)/2)); transform: rotate(-5deg); display: grid; place-content: center; text-align: center; }
+.trophy-lines { font: 700 130px/.75 "Chakra Petch"; color: transparent; -webkit-text-stroke: 4px var(--green); text-shadow: 8px 9px 0 rgba(19,229,134,.15); letter-spacing: -22px; padding-right: 20px; }
+.mark-caption { margin-top: 26px; color: white; font: 700 16px/.9 "Chakra Petch"; letter-spacing: 5px; }
+
+.scores-section { max-width: 1180px; margin: auto; padding: 52px 24px 80px; }
+.section-heading { display: flex; justify-content: space-between; align-items: flex-end; }
+.section-kicker { color: #819088; margin-bottom: 2px; }
+.section-heading h2 { margin: 0; font: 700 35px "Chakra Petch"; letter-spacing: -1px; }
+.updated { color: #85928b; font-size: 11px; }
+.updated span { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); margin-right: 5px; box-shadow: 0 0 0 4px rgba(19,229,134,.12); }
+.updated b { color: #2e4037; font-weight: 600; }
+.filter-bar { margin: 26px 0 34px; border-bottom: 1px solid #ccd7d1; display: flex; gap: 12px; overflow-x: auto; }
+.filter { border: 0; padding: 10px 16px 13px; background: transparent; color: #74817a; white-space: nowrap; font-size: 13px; position: relative; }
+.filter span { padding: 1px 6px; border-radius: 10px; font: 600 10px "Chakra Petch"; background: #dfe5e1; margin-left: 4px; }
+.filter i { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 3px rgba(255,101,52,.13); }
+.filter.active { color: var(--ink); font-weight: 600; }
+.filter.active::after { content: ""; height: 3px; position: absolute; left: 10px; right: 10px; bottom: -1px; background: var(--green-dark); }
+.filter.active span { background: var(--green-dark); color: white; }
+.date-divider { display: flex; align-items: center; gap: 8px; margin-bottom: 15px; font-size: 12px; }
+.date-divider span { font-weight: 700; }
+.date-divider time { color: #8a9690; }
+.date-divider i { height: 1px; background: var(--line); flex: 1; }
+.match-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+.match-card { background: var(--paper); border: 1px solid #e2e8e4; border-radius: 7px; padding: 17px 20px 0; overflow: hidden; box-shadow: 0 6px 24px rgba(19,45,32,.035); transition: transform .2s, box-shadow .2s; }
+.match-card:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(19,45,32,.09); }
+.match-card.featured { border-color: rgba(0,92,61,.35); box-shadow: 0 8px 26px rgba(0,92,61,.08); }
+.match-card.featured::before { content: attr(data-featured-label); display: block; width: fit-content; margin: -17px auto 10px; padding: 4px 12px; border-radius: 0 0 7px 7px; color: white; background: var(--green-dark); font: 700 9px "Chakra Petch"; letter-spacing: .7px; }
+.card-top { display: flex; justify-content: space-between; align-items: center; }
+.stage { color: #839088; font: 600 9px "Chakra Petch"; letter-spacing: 1px; text-transform: uppercase; }
+.match-status { font: 700 9px "Chakra Petch"; letter-spacing: .4px; color: #75837b; }
+.match-status.live { color: var(--orange); background: #fff0eb; padding: 4px 8px; border-radius: 12px; }
+.match-status.live::before { content: ""; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--orange); margin-right: 5px; animation: pulse 1.5s infinite; }
+@keyframes pulse { 50% { opacity: .35; } }
+.teams-row { display: grid; grid-template-columns: 1fr 120px 1fr; align-items: center; margin: 17px 0 15px; }
+.team { text-align: center; min-width: 0; }
+.crest { width: 54px; height: 54px; display: grid; place-items: center; margin: auto; border-radius: 50%; background: #f0f3ef; border: 1px solid #e0e7e2; box-shadow: inset 0 0 0 4px #fff, 0 4px 12px rgba(18,43,30,.08); }
+.crest img { width: 38px; height: 38px; display: block; border-radius: 50%; object-fit: cover; }
+.team h3 { margin: 8px 0 0; font: 700 15px "Chakra Petch"; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.team small { display: block; color: #96a19b; font-size: 9px; text-transform: uppercase; }
+.score-box { text-align: center; }
+.score { display: flex; justify-content: center; align-items: center; gap: 12px; font: 700 34px "Chakra Petch"; }
+.score span { color: #aab4af; font-weight: 400; }
+.score-note { color: #8b9891; font-size: 9px; margin: -2px 0 0; min-height: 14px; }
+.scorers { border-top: 1px dashed #dfe6e2; min-height: 53px; padding: 10px 3px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; color: #5e6d65; font-size: 10px; }
+.scorers div:last-child { text-align: right; }
+.scorers p { margin: 2px 0; }
+.scorers .ball { font-size: 8px; margin: 0 3px; filter: grayscale(1); }
+.details-btn { width: calc(100% + 40px); margin-left: -20px; border: 0; border-top: 1px solid #edf0ee; background: #fbfcfb; color: #43534a; padding: 11px; font-size: 11px; font-weight: 600; transition: .2s; }
+.details-btn span { color: var(--green-dark); margin-left: 5px; }
+.details-btn:hover { background: var(--green-dark); color: white; }
+.details-btn:hover span { color: var(--green); }
+.match-card[hidden] { display: none; }
+.data-message { grid-column: 1 / -1; padding: 34px 20px; border: 1px dashed #cbd7d0; border-radius: 8px; color: #708078; background: rgba(255,255,255,.55); text-align: center; }
+
+.modal[hidden] { display: none; }
+.modal { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 20px; }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(2,13,8,.78); backdrop-filter: blur(6px); animation: fade .2s; }
+.modal-panel { position: relative; z-index: 1; width: min(560px, 100%); max-height: 90vh; overflow-y: auto; background: white; border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,.35); animation: rise .25s; }
+@keyframes fade { from { opacity: 0; } }
+@keyframes rise { from { transform: translateY(18px) scale(.98); opacity: 0; } }
+.modal-close { position: absolute; z-index: 2; right: 16px; top: 14px; border: 0; background: rgba(255,255,255,.13); color: white; width: 34px; height: 34px; border-radius: 50%; font-size: 23px; }
+.modal-hero { color: white; text-align: center; padding: 35px 28px 28px; background: radial-gradient(circle at 50% 0, #08754a, transparent 60%), var(--night); }
+.modal-hero .stage { color: #a3b9ae; }
+.modal-teams { display: grid; grid-template-columns: 1fr 120px 1fr; align-items: center; margin-top: 22px; }
+.modal-teams .crest { width: 68px; height: 68px; }
+.modal-teams .crest img { width: 48px; height: 48px; }
+.modal-teams h3 { margin: 8px 0; font: 700 16px "Chakra Petch"; }
+.modal-score { font: 700 43px "Chakra Petch"; color: var(--green); }
+.modal-body { padding: 24px 28px 30px; }
+.modal-body h4 { margin: 0 0 12px; font: 700 15px "Chakra Petch"; }
+.event { display: grid; grid-template-columns: 52px 1fr; gap: 10px; padding: 9px 0; border-bottom: 1px solid #eef1ef; font-size: 12px; }
+.event time { color: var(--green-dark); font: 700 12px "Chakra Petch"; }
+.venue { margin-top: 20px; background: #f2f5f2; border-radius: 8px; padding: 13px 15px; color: #536159; font-size: 11px; display: flex; justify-content: space-between; }
+.source-link { display: block; margin-top: 14px; color: var(--green-dark); font-size: 11px; font-weight: 600; text-align: right; }
+body.modal-open { overflow: hidden; }
+
+@media (max-width: 760px) {
+  .site-header { height: 65px; grid-template-columns: 1fr auto; padding: 0 18px; }
+  .main-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 62px; z-index: 30; background: #071810; justify-content: space-around; gap: 0; padding: 0 8px; border-top: 1px solid #244032; }
+  .main-nav a { font-size: 10px; padding: 0 7px; }
+  .main-nav a.active::after { top: 0; bottom: auto; }
+  .header-actions { display: none; }
+  .hero { min-height: 405px; padding-top: 45px; align-items: flex-start; }
+  .hero-copy { width: 100%; }
+  .hero h1 { font-size: clamp(45px, 15vw, 68px); }
+  .hero-mark { opacity: .17; right: -30px; bottom: -5px; }
+  .host-row strong { display: none; }
+  .scores-section { padding: 38px 15px 95px; }
+  .section-heading { align-items: center; }
+  .updated { width: 90px; text-align: right; }
+  .match-grid { grid-template-columns: 1fr; }
+  .filter-bar { margin-right: -15px; }
+  .teams-row { grid-template-columns: 1fr 105px 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+}
