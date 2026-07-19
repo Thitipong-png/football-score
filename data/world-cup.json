@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-18T22:10:19.082Z",
+  "updatedAt": "2026-07-19T07:41:41.501Z",
   "source": "football-data.org free tier",
   "stopDateBangkok": "2026-07-22",
   "matches": [
@@ -7,29 +7,29 @@
       "id": 537389,
       "kickoff": "2026-07-18T21:00:00Z",
       "stage": "ชิงอันดับ 3 · รอยืนยันสนาม",
-      "status": "live",
-      "statusText": "LIVE · 0'",
+      "status": "finished",
+      "statusText": "จบการแข่งขัน",
       "home": {
         "name": "FRA",
         "th": "ฝรั่งเศส",
         "code": "france",
         "logo": "https://crests.football-data.org/773.svg",
-        "score": 0
+        "score": 4
       },
       "away": {
         "name": "ENG",
         "th": "อังกฤษ",
         "code": "england",
         "logo": "https://crests.football-data.org/770.svg",
-        "score": 4
+        "score": 6
       },
-      "note": "กำลังแข่งขัน",
+      "note": "19 ก.ค. 04:00 น. · เต็มเวลา",
       "homeScorers": [],
       "awayScorers": [],
       "venue": "รอยืนยันสนาม",
       "attendance": "ชิงอันดับ 3",
       "source": "https://www.football-data.org/coverage",
-      "featured": "กำลังแข่งขัน"
+      "featured": "ผลล่าสุด"
     },
     {
       "id": 537388,
@@ -56,8 +56,7 @@
       "awayScorers": [],
       "venue": "รอยืนยันสนาม",
       "attendance": "รอบรองชนะเลิศ",
-      "source": "https://www.football-data.org/coverage",
-      "featured": "ผลล่าสุด"
+      "source": "https://www.football-data.org/coverage"
     },
     {
       "id": 537387,
