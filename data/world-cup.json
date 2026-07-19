@@ -1,8 +1,36 @@
 {
-  "updatedAt": "2026-07-19T18:12:42.822Z",
+  "updatedAt": "2026-07-19T22:11:58.847Z",
   "source": "football-data.org free tier",
   "stopDateBangkok": "2026-07-22",
   "matches": [
+    {
+      "id": 537390,
+      "kickoff": "2026-07-19T19:00:00Z",
+      "stage": "รอบชิงชนะเลิศ · รอยืนยันสนาม",
+      "status": "finished",
+      "statusText": "จบการแข่งขัน",
+      "home": {
+        "name": "ESP",
+        "th": "สเปน",
+        "code": "spain",
+        "logo": "https://crests.football-data.org/760.svg",
+        "score": 1
+      },
+      "away": {
+        "name": "ARG",
+        "th": "อาร์เจนตินา",
+        "code": "argentina",
+        "logo": "https://crests.football-data.org/762.png",
+        "score": 0
+      },
+      "note": "20 ก.ค. 02:00 น. · เต็มเวลา",
+      "homeScorers": [],
+      "awayScorers": [],
+      "venue": "รอยืนยันสนาม",
+      "attendance": "รอบชิงชนะเลิศ",
+      "source": "https://www.football-data.org/coverage",
+      "featured": "ผลล่าสุด"
+    },
     {
       "id": 537389,
       "kickoff": "2026-07-18T21:00:00Z",
@@ -28,8 +56,7 @@
       "awayScorers": [],
       "venue": "รอยืนยันสนาม",
       "attendance": "ชิงอันดับ 3",
-      "source": "https://www.football-data.org/coverage",
-      "featured": "ผลล่าสุด"
+      "source": "https://www.football-data.org/coverage"
     },
     {
       "id": 537388,
@@ -84,34 +111,6 @@
       "venue": "รอยืนยันสนาม",
       "attendance": "รอบรองชนะเลิศ",
       "source": "https://www.football-data.org/coverage"
-    },
-    {
-      "id": 537390,
-      "kickoff": "2026-07-19T19:00:00Z",
-      "stage": "รอบชิงชนะเลิศ · รอยืนยันสนาม",
-      "status": "upcoming",
-      "statusText": "20 ก.ค. 02:00 น.",
-      "home": {
-        "name": "ESP",
-        "th": "สเปน",
-        "code": "spain",
-        "logo": "https://crests.football-data.org/760.svg",
-        "score": "–"
-      },
-      "away": {
-        "name": "ARG",
-        "th": "อาร์เจนตินา",
-        "code": "argentina",
-        "logo": "https://crests.football-data.org/762.png",
-        "score": "–"
-      },
-      "note": "เวลาไทย",
-      "homeScorers": [],
-      "awayScorers": [],
-      "venue": "รอยืนยันสนาม",
-      "attendance": "รอบชิงชนะเลิศ",
-      "source": "https://www.football-data.org/coverage",
-      "featured": "แมตช์ถัดไป"
     }
   ]
 }
